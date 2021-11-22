@@ -2,9 +2,14 @@
   "name": "google-cloud-platform",
   "version": "1.0.0",
   "dependencies": {
-    "@google-cloud/monitoring": "^2.3.5"
+    "@google-cloud/logging": "^9.6.3",
+    "@google-cloud/monitoring": "^2.3.5",
+    "prom-client": "^14.0.1"
   },
   "devDependencies": {
     "@google-cloud/storage": "^5.16.0"
+  },
+  "scripts": {
+    "prometheus:server": "docker run --rm -p 9090:9090 -v `pwd`/prometheus.yml:/etc/prometheus/prometheus.yml  prom/prometheus:v2.20.1"
   }
 }
