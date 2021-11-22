@@ -1,0 +1,10 @@
+{
+  "name": "google-cloud-platform",
+  "version": "1.0.0",
+  "dependencies": {
+    "@google-cloud/monitoring": "^2.3.5"
+  },
+  "devDependencies": {
+    "@google-cloud/storage": "^5.16.0"
+  }
+}
