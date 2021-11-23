@@ -4,6 +4,7 @@
   "dependencies": {
     "@google-cloud/logging": "^9.6.3",
     "@google-cloud/monitoring": "^2.3.5",
+    "@google-cloud/pubsub": "^2.18.3",
     "prom-client": "^14.0.1"
   },
   "devDependencies": {

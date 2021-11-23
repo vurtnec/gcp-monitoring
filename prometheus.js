@@ -14,7 +14,7 @@ register.setDefaultLabels({
 client.collectDefaultMetrics({ register })
 
 // Create a histogram metric
-const httpRequestDurationMicroseconds = new client.Histogram(           {
+const httpRequestDurationMicroseconds = new client.Histogram({
     name: 'http_request_duration_seconds',
     help: 'Duration of HTTP requests in microseconds',
     labelNames: ['method', 'route', 'code'],
@@ -49,7 +49,7 @@ const server = http.createServer(async (req, res) => {
         res.end(a)
     }
 
-    end({ route, code: res.statusCode, method: req.method })
+
 })
 
 // Start the HTTP server which exposes the metrics on http://localhost:8080/metrics
