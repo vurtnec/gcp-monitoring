@@ -1,12 +1,12 @@
 /* app.js */
 
 const express = require("express");
-const { countAllRequests } = require("./monitoring");
+// const { countAllRequests } = require("./monitoring");
 
 
 const PORT = process.env.PORT || "8081";
 const app = express();
-app.use(countAllRequests());
+// app.use(countAllRequests());
 
 app.get("/", (req, res) => {
     res.send("Hello World");

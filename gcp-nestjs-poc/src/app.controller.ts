@@ -1,21 +1,25 @@
-import {Controller, Get, Provider} from '@nestjs/common';
+import {Controller, Get} from '@nestjs/common';
 import { AppService } from './app.service';
 import {} from "@willsoto/nestjs-prometheus";
 
 @Controller()
 export class AppController {
   constructor(
-      private readonly appService: AppService,
-      private readonly provider: Provider
+      private readonly appService: AppService
   ) {}
 
   @Get()
-  getHello(): string {
+  getHello(test: string): string {
     return this.appService.getHello();
   }
 
   @Get('/test')
   getTest(): string {
     return 'test';
+  }
+
+  @Get('/test1')
+  getTes1(): string {
+    return this.appService.getHello();
   }
 }

@@ -49,6 +49,7 @@ const server = http.createServer(async (req, res) => {
         res.end(a)
     }
 
+    end({ route, code: res.statusCode, method: req.method });
 
 })
 

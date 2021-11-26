@@ -1,3 +1,4 @@
 .idea
 /jacob-gcp-monitering-file.json
 /node_modules/
+open-telemetry-express-example/node_modules
