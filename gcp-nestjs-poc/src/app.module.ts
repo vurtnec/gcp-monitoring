@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import {makeHistogramProvider, PrometheusModule} from "@willsoto/nestjs-prometheus";
-import { PrometheusExporter } from '@opentelemetry/exporter-prometheus';
 import {
   OpenTelemetryModule,
   ControllerInjector,
@@ -12,8 +11,10 @@ import {
   PipeInjector,
   ScheduleInjector,
 } from '@metinseylan/nestjs-opentelemetry';
-import { ZipkinExporter } from '@opentelemetry/exporter-zipkin';
+// import { ZipkinExporter } from '@opentelemetry/exporter-zipkin';
 import { SimpleSpanProcessor } from '@opentelemetry/sdk-trace-base';
+const { TraceExporter } = require('@google-cloud/opentelemetry-cloud-trace-exporter');
+
 
 @Module({
   imports: [PrometheusModule.register(), OpenTelemetryModule.forRoot({
@@ -26,8 +27,11 @@ import { SimpleSpanProcessor } from '@opentelemetry/sdk-trace-base';
       LoggerInjector,
     ],
     spanProcessor: new SimpleSpanProcessor(
-        new ZipkinExporter({
-          serviceName:'example-nestjs',
+        new TraceExporter({
+          // If you are not in a GCP environment, you will need to provide your
+          // service account key here. See the Authentication section below.
+          keyFile: './jacob-gcp-monitering-file.json',
+          keyFileName: './jacob-gcp-monitering-file.json',
         })
     ),
   })],
