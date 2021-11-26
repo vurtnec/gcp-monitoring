@@ -12,7 +12,7 @@ async function quickstart(
     const log = logging.log(logName);
 
     // The data to write to the log
-    const text = 'Hello, world!';
+    const text = 'Hello, world! 1111';
 
     // The metadata associated with the entry
     const metadata = {

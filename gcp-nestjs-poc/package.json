@@ -29,10 +29,12 @@
     "@opentelemetry/exporter-prometheus": "^0.27.0",
     "@opentelemetry/exporter-zipkin": "^1.0.1",
     "@willsoto/nestjs-prometheus": "^4.2.0",
+    "nest-winston": "^1.6.1",
     "prom-client": "^14.0.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",

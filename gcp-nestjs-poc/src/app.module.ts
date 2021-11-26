@@ -14,7 +14,12 @@ import {
 // import { ZipkinExporter } from '@opentelemetry/exporter-zipkin';
 import { SimpleSpanProcessor } from '@opentelemetry/sdk-trace-base';
 const { TraceExporter } = require('@google-cloud/opentelemetry-cloud-trace-exporter');
-
+import {
+  utilities as nestWinstonModuleUtilities,
+  WinstonModule,
+} from 'nest-winston';
+import * as winston from 'winston';
+import {LoggingWinston} from "@google-cloud/logging-winston";
 
 @Module({
   imports: [PrometheusModule.register(), OpenTelemetryModule.forRoot({
@@ -34,7 +39,21 @@ const { TraceExporter } = require('@google-cloud/opentelemetry-cloud-trace-expor
           keyFileName: './jacob-gcp-monitering-file.json',
         })
     ),
-  })],
+  }),
+    WinstonModule.forRoot({
+      transports: [
+        new winston.transports.Console({
+          format: winston.format.combine(
+              winston.format.timestamp(),
+              nestWinstonModuleUtilities.format.nestLike(),
+          ),
+        }),
+        new LoggingWinston({
+          projectId: 'winter-legend-331606',
+          logName: 'winston-log'
+        })
+      ],
+    })],
   controllers: [AppController],
   providers: [AppService, makeHistogramProvider({
     name: 'http_request_duration_seconds',
