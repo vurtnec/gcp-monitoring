@@ -20,6 +20,18 @@ import {
 } from 'nest-winston';
 import * as winston from 'winston';
 import {LoggingWinston} from "@google-cloud/logging-winston";
+import {context, trace} from "@opentelemetry/api";
+import {WinstonLoggerInjector} from "./WinstonLoggerInjector";
+
+// private static getMessage(message: string) {
+//   const currentSpan = trace.getSpan(context.active());
+//   if (!currentSpan) return message;
+//
+//   const spanContext = trace.getSpan(context.active()).spanContext();
+//   currentSpan.addEvent(message);
+//
+//   return `[${spanContext.traceId}] ${message}`;
+// }
 
 @Module({
   imports: [PrometheusModule.register(), OpenTelemetryModule.forRoot({
@@ -30,6 +42,7 @@ import {LoggingWinston} from "@google-cloud/logging-winston";
       ScheduleInjector,
       PipeInjector,
       LoggerInjector,
+      // WinstonLoggerInjector
     ],
     spanProcessor: new SimpleSpanProcessor(
         new TraceExporter({
@@ -40,20 +53,22 @@ import {LoggingWinston} from "@google-cloud/logging-winston";
         })
     ),
   }),
-    WinstonModule.forRoot({
-      transports: [
-        new winston.transports.Console({
-          format: winston.format.combine(
-              winston.format.timestamp(),
-              nestWinstonModuleUtilities.format.nestLike(),
-          ),
-        }),
-        new LoggingWinston({
-          projectId: 'winter-legend-331606',
-          logName: 'winston-log'
-        })
-      ],
-    })],
+    // WinstonModule.forRoot({
+    //   transports: [
+    //     new winston.transports.Console({
+    //       format: winston.format.combine(
+    //           winston.format.timestamp(),
+    //           winston.format.ms(),
+    //           nestWinstonModuleUtilities.format.nestLike('Thin', { prettyPrint: true }),
+    //       ),
+    //     }),
+    //     new LoggingWinston({
+    //       projectId: 'winter-legend-331606',
+    //       logName: 'winston-log'
+    //     })
+    //   ],
+    // })
+  ],
   controllers: [AppController],
   providers: [AppService, makeHistogramProvider({
     name: 'http_request_duration_seconds',
