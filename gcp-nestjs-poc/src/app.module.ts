@@ -21,7 +21,6 @@ import {
 import * as winston from 'winston';
 import {LoggingWinston} from "@google-cloud/logging-winston";
 import {context, trace} from "@opentelemetry/api";
-import {WinstonLoggerInjector} from "./WinstonLoggerInjector";
 
 // private static getMessage(message: string) {
 //   const currentSpan = trace.getSpan(context.active());
@@ -42,14 +41,13 @@ import {WinstonLoggerInjector} from "./WinstonLoggerInjector";
       ScheduleInjector,
       PipeInjector,
       LoggerInjector,
-      // WinstonLoggerInjector
     ],
     spanProcessor: new SimpleSpanProcessor(
         new TraceExporter({
           // If you are not in a GCP environment, you will need to provide your
           // service account key here. See the Authentication section below.
-          keyFile: './jacob-gcp-monitering-file.json',
-          keyFileName: './jacob-gcp-monitering-file.json',
+          keyFile: './local-development.json',
+          keyFileName: './local-development.json',
         })
     ),
   }),

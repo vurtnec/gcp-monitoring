@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import {WINSTON_MODULE_NEST_PROVIDER, WinstonModule} from 'nest-winston';
+import { WinstonModule} from 'nest-winston';
 import * as winston from "winston";
 import {utilities as nestWinstonModuleUtilities} from "nest-winston/dist/winston.utilities";
 import {LoggingWinston} from "@google-cloud/logging-winston";
@@ -21,8 +21,8 @@ async function bootstrap() {
           ),
         }),
         new LoggingWinston({
-          projectId: 'winter-legend-331606',
-          logName: 'winston-log'
+          projectId: 'middleware-331215',
+          logName: 'middleware-log'
         })
       ],
     })

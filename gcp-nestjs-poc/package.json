@@ -30,6 +30,7 @@
     "@opentelemetry/exporter-zipkin": "^1.0.1",
     "@willsoto/nestjs-prometheus": "^4.2.0",
     "nest-winston": "^1.6.1",
+    "ngrok": "^4.2.2",
     "prom-client": "^14.0.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

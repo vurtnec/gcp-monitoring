@@ -6,7 +6,7 @@ async function quickstart() {
     const client = new monitoring.MetricServiceClient();
 
     // TODO(developer): Uncomment and set the following variables
-    const projectId = "winter-legend-331606"
+    const projectId = "middleware-331215"
 
     // Prepares an individual data point
     const dataPoint = {
