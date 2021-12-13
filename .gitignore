@@ -2,3 +2,5 @@
 /jacob-gcp-monitering-file.json
 /node_modules/
 open-telemetry-express-example/node_modules
+/gcp-nestjs-poc/local-development.json
+/local-development.json

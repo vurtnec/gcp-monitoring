@@ -5,20 +5,30 @@ import {Histogram} from "prom-client";
 import { Logger } from 'winston';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
 import { Logger as NestLogger, Injectable } from '@nestjs/common';
+import {ClientProxy} from "@nestjs/microservices";
 
 @Controller()
 export class AppController {
   constructor(
       @InjectMetric("http_request_duration_seconds") public histogram: Histogram<any>,
       // @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger,
-      private readonly appService: AppService
+      private readonly appService: AppService,
+      @Inject('some-redis') private client: ClientProxy,
   ) {}
 
   // @ts-ignore
   private readonly nestLogger = new NestLogger(AppController.name);
 
   @Get()
-  getHello(): string {
+  async getHello(): Promise<string> {
+    // const redis = await this.client.connect();
+
+    console.log(1111, this.client)
+    const pattern = { cmd: 'sum' };
+    const payload = [1, 2, 3];
+    this.client.send(pattern, payload)
+
+
     const end = this.histogram.startTimer()
     // @ts-ignore
     // this.logger.info('Calling getHello() 1111', { controller: AppController.name });

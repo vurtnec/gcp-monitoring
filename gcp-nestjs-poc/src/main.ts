@@ -5,6 +5,7 @@ import * as winston from "winston";
 import {utilities as nestWinstonModuleUtilities} from "nest-winston/dist/winston.utilities";
 import {LoggingWinston} from "@google-cloud/logging-winston";
 import val from './format'
+import {MicroserviceOptions, Transport} from "@nestjs/microservices";
 
 
 async function bootstrap() {
@@ -30,6 +31,8 @@ async function bootstrap() {
   );
   // app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
   await app.listen(3000);
+
+
 }
 bootstrap();
 
