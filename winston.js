@@ -20,5 +20,5 @@ const logger = winston.createLogger({
 });
 
 // Writes some log entries
-logger.error('warp nacelles offline cc');
-logger.info('shields at cccc%');
+logger.error('warp nacelles offline ddd');
+logger.info('shields at dd%');
