@@ -1,6 +1,6 @@
 {
   "name": "google-cloud-platform",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "dependencies": {
     "@google-cloud/logging": "^9.6.3",
     "@google-cloud/logging-winston": "^4.1.1",
