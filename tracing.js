@@ -10,3 +10,5 @@ const sdk = new opentelemetry.NodeSDK({
 });
 
 sdk.start()
+
+console.log('test9')
